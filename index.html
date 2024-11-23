@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bat Ball Stump Game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: aqua;
+    }
+    h1 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .game-container {
+      margin-top: 40px;
+    }
+    button {
+      background-color: #007bff;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    i {
+      font-size: 24px;
+    }
+    .stump-icon {
+    font-family: monospace;
+    font-size: 15px;
+    color: whitesmoke;
+  }
+  #batt{
+    color: bisque;
+  }
+  </style>
+</head>
+<body><h1>
+
+  <h1>Bat Ball Stump Game</h1>
+  <div class="game-container">
+    <!-- Bat Button -->
+    <button onclick="
+       computerChoice = generateComputerChoice();
+       resultMsg = getResult('Bat', computerChoice);
+      showResult('Bat', computerChoice, resultMsg);
+    " >
+      <i class="fas fa-baseball-bat-ball" id="batt"></i> Bat
+    </button>
+
+    <!-- Ball Button -->
+    <button onclick="
+       computerChoice = generateComputerChoice();
+       resultMsg = getResult('Ball', computerChoice);
+      showResult('Ball', computerChoice, resultMsg);
+    ">
+      <i class="fas fa-volleyball"  id="Bal"></i> Ball
+    </button>
+
+    <!-- Stump Button -->
+    <button onclick="
+       computerChoice = generateComputerChoice();
+       resultMsg = getResult('Stump', computerChoice);
+      showResult('Stump', computerChoice, resultMsg);
+    ">
+      <div class="stump-icon">|||</div>
+      Stump
+    </button>
+  </div>
+
+  <script>
+    function generateComputerChoice() {
+      let randomNumber = Math.random() * 3;
+      if (randomNumber > 0 && randomNumber <= 1) {
+        return 'Bat';
+      } else if (randomNumber > 1 && randomNumber <= 2) {
+        return 'Ball';
+      } else {
+        return 'Stump';
+      }
+    }
+
+    function getResult(userMove, computerMove) {
+      if (userMove === 'Bat') {
+        if (computerMove === 'Ball') {
+          return 'User won.';
+        } else if (computerMove === 'Bat') {
+          return `It's a tie.`;
+        } else if (computerMove === 'Stump') {
+          return 'Computer has won.';
+        }
+      } else if (userMove === 'Ball') {
+        if (computerMove === 'Ball') {
+          return `It's a tie.`;
+        } else if (computerMove === 'Bat') {
+          return 'Computer has won.';
+        } else if (computerMove === 'Stump') {
+          return 'User won.';
+        }
+      } else {
+        if (computerMove === 'Ball') {
+          return 'Computer has won.';
+        } else if (computerMove === 'Bat') {
+          return 'User won.';
+        } else if (computerMove === 'Stump') {
+          return `It's a tie.`;
+        }
+      }
+    }
+
+    function showResult(userMove, computerMove, result) {
+      alert(`You chose ${userMove}. Computer chose ${computerMove}. ${result}`);
+    }
+  </script>
+</body>
+</html>
